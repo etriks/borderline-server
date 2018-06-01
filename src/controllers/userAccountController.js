@@ -113,14 +113,14 @@ UserAccountController.prototype.login = function(req, res) {
             }
         )
         .then(function(user) {
-                req.login(user, function (err) {
-                    if (err) {
-                        rejected(err);
-                        return;
-                    }
-                    res.status(200);
-                    res.json(user);
-                });
+            req.login(user, function (err) {
+                if (err) {
+                    rejected(err);
+                    return;
+                }
+                res.status(200);
+                res.json(user);
+            });
         }, rejected);
 };
 

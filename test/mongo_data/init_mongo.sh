@@ -1,5 +1,5 @@
 #!/bin/sh
-
+echo "Importing MongoDB seeds ..."
 mongoimport  --host mongodb --db borderline --collection borderline_server_users --drop --file /mongo_data/users.json
 mongoimport  --host mongodb --db borderline --collection borderline_server_extensions --drop --file /mongo_data/extensions.json
 mongoimport  --host mongodb --db borderline --collection borderline_server_steps --drop --file /mongo_data/steps.json

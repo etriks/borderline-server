@@ -219,7 +219,7 @@ BorderlineServer.prototype.setupUserAccount = function () {
     this.app.route('/users/:user_id')
         .get(this.userPermissionsMiddleware.userOrAdminPrivileges, this.userAccountController.getUserById) //GET user details by ID
         .post(this.userPermissionsMiddleware.userOrAdminPrivileges, this.userAccountController.postUserById) //POST Update user details
-        .delete(this.userPermissionsMiddleware.adminPrivileges, this.userAccountController.deleteUserById); //DELETE Removes a user
+        .delete(this.userPermissionsMiddleware.userOrAdminPrivileges, this.userAccountController.deleteUserById); //DELETE Removes a user
     // ] Login and sessions routes
 };
 

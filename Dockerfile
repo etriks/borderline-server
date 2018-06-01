@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:latest@sha256:029279af2fc78171cc7ee25c6a7f933a23213dd30ffd90e389afa4aee61d8ae3
 
 # Create app directory
 RUN mkdir -p /usr/src/app

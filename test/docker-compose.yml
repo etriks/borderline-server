@@ -26,15 +26,14 @@ services:
             - 8080:8080
 
     tests:
-            build:
-                context: ../
-                dockerfile: ./test/Dockerfile
-            depends_on:
-                - init_mongodb
-                - swift
-            links:
-                - mongodb
-                - swift
-            ports:
-                - 80:80
-
+        build:
+            context: ../
+            dockerfile: ./test/Dockerfile
+        depends_on:
+            - init_mongodb
+            - swift
+        links:
+            - mongodb
+            - swift
+        ports:
+            - 80:80

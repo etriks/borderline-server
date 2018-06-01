@@ -5,48 +5,48 @@ let TestServer = require('./testserver.js');
 let testserv = new TestServer();
 let current_user_id = null;
 
-beforeAll(function() {
+beforeAll(function () {
     return new Promise(function (resolve, reject) {
-        testserv.run().then(function() {
+        testserv.run().then(function () {
             resolve(true);
-        }, function(error) {
+        }, function (error) {
             reject(error.toString());
         });
     });
 });
 
-test('Login as superuser, root:root', function(done) {
-   expect.assertions(4);
-   request({
-       method: 'POST',
-       baseUrl: 'http://127.0.0.1:' + config.port,
-       uri: '/login',
-       json: true,
-       body: {
-           username: 'root',
-           password: 'root'
-       }
-   }, function (error, response, body) {
-       if (error) {
-           done.fail(error.toString());
-           return;
-       }
+test('Login as superuser, root:root', function (done) {
+    expect.assertions(4);
+    request({
+        method: 'POST',
+        baseUrl: 'http://127.0.0.1:' + config.port,
+        uri: '/login',
+        json: true,
+        body: {
+            username: 'root',
+            password: 'root'
+        }
+    }, function (error, response, body) {
+        if (error) {
+            done.fail(error.toString());
+            return;
+        }
 
-       expect(response).toBeDefined();
-       expect(response.statusCode).toEqual(200);
-       testserv.setCookie(response);
+        expect(response).toBeDefined();
+        expect(response.statusCode).toEqual(200);
+        testserv.setCookie(response);
 
-       expect(body).toBeDefined();
-       expect(body._id).toBeDefined();
+        expect(body).toBeDefined();
+        expect(body._id).toBeDefined();
 
-       //Save login session information
-       current_user_id = body._id;
+        //Save login session information
+        current_user_id = body._id;
 
-       done();
-   });
+        done();
+    });
 });
 
-test('Check session is active for root', function(done) {
+test('Check session is active for root', function (done) {
     expect.assertions(6);
     request({
         method: 'GET',
@@ -73,7 +73,7 @@ test('Check session is active for root', function(done) {
     });
 });
 
-test('List all users as root', function(done) {
+test('List all users as root', function (done) {
     expect.assertions(4);
     request({
         method: 'GET',
@@ -98,7 +98,7 @@ test('List all users as root', function(done) {
     });
 });
 
-test('Logout root user', function(done) {
+test('Logout root user', function (done) {
     expect.assertions(4);
     request({
         method: 'POST',
@@ -125,7 +125,7 @@ test('Logout root user', function(done) {
     });
 });
 
-test('Check session is closed for root', function(done) {
+test('Check session is closed for root', function (done) {
     expect.assertions(5);
     request({
         method: 'GET',
@@ -151,7 +151,7 @@ test('Check session is closed for root', function(done) {
     });
 });
 
-test('Login as user, user:password', function(done) {
+test('Login as user, user:password', function (done) {
     expect.assertions(4);
     request({
         method: 'POST',
@@ -181,7 +181,7 @@ test('Login as user, user:password', function(done) {
     });
 });
 
-test('Check session is active for user', function(done) {
+test('Check session is active for user', function (done) {
     expect.assertions(6);
     request({
         method: 'GET',
@@ -208,7 +208,7 @@ test('Check session is active for user', function(done) {
     });
 });
 
-test('Logout user', function(done) {
+test('Logout superuser', function (done) {
     expect.assertions(4);
     request({
         method: 'POST',
@@ -234,7 +234,7 @@ test('Logout user', function(done) {
     });
 });
 
-test('Login with unknown credentials, user2:password2, check account is created', function(done) {
+test('Login with unknown credentials, user2:password2, check account is created', function (done) {
     expect.assertions(4);
     request({
         method: 'POST',
@@ -264,7 +264,7 @@ test('Login with unknown credentials, user2:password2, check account is created'
     });
 });
 
-test('Check session is active for user2', function(done) {
+test('Check session is active for user2', function (done) {
     expect.assertions(6);
     request({
         method: 'GET',
@@ -291,7 +291,7 @@ test('Check session is active for user2', function(done) {
     });
 });
 
-test('List users without admin right, check it fails', function(done) {
+test('List users without admin right, check it fails', function (done) {
     expect.assertions(3);
     request({
         method: 'GET',
@@ -315,7 +315,7 @@ test('List users without admin right, check it fails', function(done) {
     });
 });
 
-test('Delete user2 when user2 is connected', function(done) {
+test('Delete user2 when user2 is connected', function (done) {
     expect.assertions(3);
     request({
         method: 'DELETE',
@@ -339,7 +339,7 @@ test('Delete user2 when user2 is connected', function(done) {
     });
 });
 
-test('Check user2 has been disconnected', function(done) {
+test('Check user2 has been disconnected', function (done) {
     expect.assertions(5);
     request({
         method: 'GET',
@@ -365,9 +365,9 @@ test('Check user2 has been disconnected', function(done) {
     });
 });
 
-afterAll(function() {
-    return new Promise(function(resolve, reject) {
-        testserv.stop().then(function() {
+afterAll(function () {
+    return new Promise(function (resolve, reject) {
+        testserv.stop().then(function () {
             resolve(true);
         }, function (error) {
             reject(error.toString());

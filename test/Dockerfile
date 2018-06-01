@@ -16,8 +16,9 @@ RUN npm install --silent; exit 0;
 RUN cat /root/.npm/_logs/*; exit 0;
 
 # Bundle app
-COPY ./src /usr/app/src
+COPY ./.git /usr/app/.git
 COPY ./.eslintrc /usr/app/.eslintrc
+COPY ./src /usr/app/src
 COPY ./test/*.js /usr/app/test/
 COPY ./config/borderline.test.config.js /usr/app/config/borderline.config.js
 

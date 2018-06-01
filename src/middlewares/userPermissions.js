@@ -26,7 +26,7 @@ module.exports.adminPrivileges = function(req, res, next) {
  * @param next Express.js handler function chain
  */
 module.exports.userPrivileges = function(req, res, next) {
-    if (req.user && req.user.id === req.params.user_id) {
+    if (req.user && req.user._id.toString() === req.params.user_id.toString()) {
         next();
         return;
     }
@@ -44,7 +44,7 @@ module.exports.userPrivileges = function(req, res, next) {
  * @param next Express.js handler function chain
  */
 module.exports.userOrAdminPrivileges = function(req, res, next) {
-  if (req.user && req.user.id === req.params.user_id) {
+  if (req.user && req.user._id.toString() === req.params.user_id.toString()) {
       next();
       return;
   }
