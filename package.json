@@ -29,7 +29,7 @@
         "test": "jest --runInBand --colors --detectOpenHandles --forceExit --verbose --coverage && cat ./coverage/lcov.info | codacy-coverage --token $CODACY_COVERAGE_TOKEN"
     },
     "dependencies": {
-        "adm-zip": "0.4.11",
+        "adm-zip": "0.4.13",
         "body-parser": "1.18.3",
         "borderline-utils": "0.2.5",
         "connect-mongo": "2.0.1",
